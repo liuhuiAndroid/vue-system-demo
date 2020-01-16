@@ -1,0 +1,40 @@
+<!------------------------------------------------------------
+  文件名:   ch3-1.html
+  第三章:   $emit 和 $on 用法
+  开发平台: VSCode 1.39.1
+  Vue 实战小慕读书中后台 By Sam
+------------------------------------------------------------->
+<html>
+<head>
+    <title>$emit 和 $on</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <button @click="boost">触发事件</button>
+</div>
+<script>
+    new Vue({
+        el: '#root',
+        data() {
+            return {
+                message: 'hello vue'
+            }
+        },
+        created() {
+            // 1. 定义my_events事件
+            this.$on('my_events', this.handleEvents)
+        },
+        methods: {
+            handleEvents(e) {
+                console.log(this.message, e)
+            },
+            boost() {
+                // 2. 消费my_events事件
+                this.$emit('my_events', 'my params')
+            }
+        }
+    })
+</script>
+</body>
+</html>
