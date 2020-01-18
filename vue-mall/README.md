@@ -40,11 +40,50 @@ cnpm run serve
 vue ui
 # 安装依赖
 vue ui 安装 axios 和 vue-router vuex
+cnpm i axios --save-dev
 # Vue DevTools安装使用
 - 翻墙谷歌应用商店安装 vue devtools
 - 手动安装:https://github.com/vuejs/vue-devtools
 - VUE 配置vue-devtools调试工具:https://www.imooc.com/article/294527
 ```
+
+#### 项目基础架构
+
+1. 前端跨域解决方案
+
+   1. 什么是前端跨域
+
+      1. 跨域是浏览器为了安全而做出的限制策略
+      2. 浏览器请求必须遵循同源策略：同域名、同端口、同协议
+
+   2. 怎么解决前端跨域
+
+      1. CORS跨域
+
+         1. 服务端设置，前端直接调用
+         2. 说明：后台允许前端某个站点进行访问
+
+      2. JSONP跨域
+
+         1. 前端安装jsonp插件
+
+            ```
+            cnpm i jsonp --save-dev
+            import jsonp from 'jsonp'
+            let url2 = "https://www.imooc.com/common/adver-getadverlistbymarking?marking=global_newcomer"
+            jsonp(url2,(err,res)=>{
+            	let result = res;
+            	this.data = result
+            })
+            ```
+
+         2. 
+
+      3. 代理跨域
+
+         1. 接口代理，通过修改nginx服务器配置来实现
+         2. 说明：前端修改，后台不动。
+         3. 配置vue.config.js
 
 #### 遇到的问题
 
