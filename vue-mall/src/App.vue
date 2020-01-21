@@ -6,6 +6,7 @@
 
 <script>
 import axios from 'axios'
+import storage from './storage'
 // import jsonp from 'jsonp'
 
 export default {
@@ -32,6 +33,8 @@ export default {
     //   let result = res;
     //   this.data = result
     // })
+
+    storage.setItem('a',1);
   }
 }
 </script>

@@ -100,6 +100,17 @@ cnpm i axios --save-dev
 
 5. Storage封装
 
+   1. Cookie、localStorage、sessionStorage三者区别？
+      1. 存储大小：Cookie4K、Storage5M
+      2. 有效期：Cookie拥有有效期，Storage永久存储
+      3. Cookie会发送到服务端，存储在内存中，Storage只存储在浏览器端
+      4. 路径：Cookie有路径限制，Storage只存储在域名下
+      5. API：Cookie没有特定的API，Storage有对应的API
+   2. 为什么要封装Storage，本身不是已经由API？
+      1. Storage本身有API，但是只是简单的key/value形式
+      2. Storage只存储字符串，需要人工转换成json对象
+      3. Storage只能一次性清空，不能单个清空
+
 6. 接口错误拦截
 
 7. 接口环境设置
