@@ -84,6 +84,31 @@ cnpm i axios --save-dev
          1. 接口代理，通过修改nginx服务器配置来实现
          2. 说明：前端修改，后台不动。
          3. 配置vue.config.js
+   
+2. 目录结构设置
+
+3. 基本插件介绍
+
+   ```shell
+   cnpm i vue-lazyload element-ui node-sass sass-loader vue-awesome-swiper vue-axios vue-cookie --save
+   ```
+
+4. 路由封装
+
+   1. 编写 router.js
+   2. main.js 中使用 router.js
+
+5. Storage封装
+
+6. 接口错误拦截
+
+7. 接口环境设置
+
+8. Mock设置
+
+
+
+
 
 #### 遇到的问题
 
