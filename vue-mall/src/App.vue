@@ -21,14 +21,14 @@ export default {
   },
   mounted() {
     // CORS
-    let url = "/api/common/adver-getadverlistbymarking?marking=global_newcomer"
+    let url = "/common/adver-getadverlistbymarking?marking=global_newcomer"
     axios.get(url).then((res)=>{
       let result = res.data;
       this.data = result
     })
     // JSONP
     // https://www.imooc.com/common/adver-getadverlistbymarking?marking=global_newcomer
-    // let url2 = "/api/common/adver-getadverlistbymarking?marking=global_newcomer"
+    // let url2 = "/common/adver-getadverlistbymarking?marking=global_newcomer"
     // jsonp(url2,(err,res)=>{
     //   let result = res;
     //   this.data = result
