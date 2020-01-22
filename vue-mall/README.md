@@ -125,9 +125,17 @@ cnpm i axios --save-dev
 
 8. 跨域的Mock设置
 
+   1. 开发阶段，为了提高效率，需要提前Mock
 
+   2. 减少代码冗余、灵活插拔
 
+   3. 减少沟通、减少接口联调时间
 
+   4. 方案：本地创建json方案、搭建easy-mock平台、集成Mock API
+
+   5. ```shell
+      cnpm i mockjs --save-dev
+      ```
 
 #### 遇到的问题
 

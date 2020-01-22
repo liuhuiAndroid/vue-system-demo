@@ -5,8 +5,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-import storage from './storage'
+// import storage from './storage'
 // import jsonp from 'jsonp'
 
 export default {
@@ -16,13 +15,14 @@ export default {
   data(){
     return {
       test: 30,
-      data: Object
+      data: Object,
+      res: {}
     }
   },
   mounted() {
     // CORS
     let url = "/common/adver-getadverlistbymarking?marking=global_newcomer"
-    axios.get(url).then((res)=>{
+    this.axios.get(url).then((res)=>{
       let result = res.data;
       this.data = result
     })
@@ -34,7 +34,16 @@ export default {
     //   this.data = result
     // })
 
-    storage.setItem('a',1);
+    // storage.setItem('a',1);
+
+    // 本地加载请求静态json文件的形式
+    // this.axios.get('/mock/user/login.json').then((res)=>{
+    //   this.res = res;
+    // })
+    // 本地集成mockjs实现数据mock
+    this.axios.get('/user/login').then((res)=>{
+      this.res = res;
+    })
   }
 }
 </script>
