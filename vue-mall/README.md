@@ -137,5 +137,9 @@ cnpm i axios --save-dev
       cnpm i mockjs --save-dev
       ```
 
+#### 商城首页
+
+1. 
+
 #### 遇到的问题
 
