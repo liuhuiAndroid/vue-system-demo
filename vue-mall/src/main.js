@@ -6,7 +6,7 @@ import App from './App.vue'
 // import env from './env'
 
 // mock开关
-const mock = true;
+const mock = false;
 if(mock){
     // require执行才加载,import是预编译加载
     require('./mock/api')
