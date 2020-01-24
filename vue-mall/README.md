@@ -140,6 +140,7 @@ cnpm i axios --save-dev
 #### 商城首页
 
 1. Swiper5使用： https://www.swiper.com.cn/ 
+2. vue-lazyload插件
 
 #### 遇到的问题
 
