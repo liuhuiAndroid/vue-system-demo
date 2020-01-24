@@ -82,7 +82,7 @@
                                 <div class="item-info">
                                     <h3>{{item.name}}</h3>
                                     <p>{{item.subtitle}}</p>
-                                    <p class="price">{{item.price}}元</p>
+                                    <p class="price" @click="addCart(item.id)">{{item.price}}元</p>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,10 @@
             </div>
         </div>
         <service-bar></service-bar>
-        <modal title="提示" sure-text="查看购物车" btn-type="1" modal-type="middle" :show-modal="showModal">
+        <modal title="提示" sureText="查看购物车" btnType="1"
+               modalType="middle" :showModal="showModal"
+                v-on:submit="goToCart"
+                v-on:cancel="showModal=false">
             <template v-slot:body>
                 <p>商品添加成功！</p>
             </template>
@@ -100,8 +103,8 @@
 </template>
 
 <script>
-    import ServiceBar from "../components/ServiceBar";
-    import Modal from "../components/Modal";
+    import ServiceBar from "./../components/ServiceBar";
+    import Modal from "./../components/Modal";
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
     import 'swiper/dist/css/swiper.css'
     export default {
@@ -109,7 +112,7 @@
         components: {ServiceBar,swiper, swiperSlide, Modal},
         data(){
             return {
-                showModal:true,
+                showModal:false,
                 swiperOption:{
                     autoplay: true,
                     loop: true,
@@ -329,12 +332,27 @@
                     res.list = res.list.slice(6,14);
                     this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)]
                 })
+            },
+            addCart(){
+                this.showModal = true;
+                return;
+                // this.axios.post('/carts',{
+                //     productId: id,
+                //     selected: true
+                // }).then(()=>{
+                //
+                // }).catch(()=>{
+                //     this.showModal = true;
+                // })
+            },
+            goToCart(){
+                this.$router.push('/cart')
             }
         }
     }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
     @import './../assets/scss/base';
     @import './../assets/scss/mixin';
     @import './../assets/scss/config';

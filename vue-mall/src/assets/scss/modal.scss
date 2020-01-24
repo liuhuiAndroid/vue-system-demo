@@ -1,10 +1,20 @@
 .modal{
   @include position(fixed);
   z-index: 10;
+  transition: all .5s;
   .mask{
     @include position(fixed);
     background-color: $colorI;
     opacity: 0.5;
+  }
+  &.slide-enter-active{
+    top:0;
+  }
+  &.slide-leave-active{
+    top:-100%;
+  }
+  &.slide-enter{
+    top:-100%;
   }
   .modal-dialog{
     @include position(absolute,40%,50%,660px,auto);
@@ -17,7 +27,7 @@
       line-height: 60px;
       font-size: $fontI;
       .icon-close{
-        @include positionImg(absolute,23px,25px,14px,14px,'/imgs/icon-close.png')
+        @include positionImg(absolute,23px,25px,14px,14px,'/imgs/icon-close.png');
         transition: transform .3s;
         &:hover{
           transform: scale(1.5);
@@ -27,7 +37,6 @@
     .modal-body{
       padding: 42px 40px 54px;
       font-size: 14px;
-      background-color: $colorG;
     }
     .modal-footer{
       height: 82px;
