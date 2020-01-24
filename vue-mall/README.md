@@ -139,7 +139,7 @@ cnpm i axios --save-dev
 
 #### 商城首页
 
-1. 
+1. Swiper5使用： https://www.swiper.com.cn/ 
 
 #### 遇到的问题
 
