@@ -2,6 +2,37 @@
     <div class="index">
         <div class="container">
             <div class="swiper-box">
+                <div class="nav-menu">
+                    <ul class="menu-wrap">
+                        <li class="menu-item">
+                            <a href="javascript:;">手机 电话卡</a>
+                            <div class="children">
+
+                            </div>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">电视 盒子</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">笔记本 显示器 平板</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">家电 插线板</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">出行 穿戴</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">智能 路由器</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">电源 配件</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">健康 儿童</a>
+                        </li>
+                    </ul>
+                </div>
                 <swiper :options="swiperOption">
                     <swiper-slide v-for="(item,index) in slideList" :key="index">
                         <a :href="'/#/product/' + item.id">
@@ -84,13 +115,50 @@
 </script>
 
 <style scoped lang="scss">
+    @import './../assets/scss/mixin';
+    @import './../assets/scss/config';
     .index{
         .swiper-box{
+            .nav-menu{
+                position: absolute;
+                width: 264px;
+                height: 451px;
+                z-index: 9;
+                padding: 26px 0;
+                background-color: #55585A7A;
+                box-sizing: border-box;
+                .menu-wrap{
+                    .menu-item{
+                        height: 50px;
+                        line-height: 50px;
+                        a{
+                            position: relative;
+                            font-size: 16px;
+                            color: #FFFFFF;
+                            padding-left: 30px;
+                            display: block;
+                            &:after{
+                                content: ' ';
+                                @include bgImg(10px,15px,'/imgs/icon-arrow.png');
+                                position: absolute;
+                                right: 30px;
+                                top: 17.5px;
+                            }
+                        }
+                        &:hover{
+                            background-color: $colorA;
+                        }
+                    }
+                }
+            }
             .swiper-container {
                 height: 451px;
                 img{
                     width: 100%;
                     height: 100%;
+                }
+                .swiper-button-prev{
+                    left: 274px;
                 }
             }
         }
