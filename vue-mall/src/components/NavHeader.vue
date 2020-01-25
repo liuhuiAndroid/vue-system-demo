@@ -77,7 +77,7 @@
         name: "NavHeader",
         data(){
             return {
-                username: 'jack',
+                username: '',
                 phoneList: []
             }
         },

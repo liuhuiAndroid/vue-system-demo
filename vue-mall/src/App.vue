@@ -44,6 +44,21 @@ export default {
     this.axios.get('/user/login').then((res)=>{
       this.res = res;
     })
+
+    this.getUser()
+    this.getCartCount()
+  },
+  methods:{
+    getUser(){
+      this.axios.get('/user').then(()=>{
+        // TODO 保存到vuex
+      })
+    },
+    getCartCount(){
+      this.axios.get('/carts/products/sum').then(()=>{
+        // TODO 获取购物车数据
+      })
+    }
   }
 }
 </script>
