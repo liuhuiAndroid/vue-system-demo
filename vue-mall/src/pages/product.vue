@@ -5,6 +5,11 @@
                 <button class="btn">立即购买</button>
             </template>
         </product-param>
+        <div class="h">123</div>
+        <div class="h">123</div>
+        <div class="h">123</div>
+        <div class="h">123</div>
+        <div class="h">123</div>
     </div>
 </template>
 
@@ -23,6 +28,9 @@
     .product {
         button {
             margin-left: 10px;
+        }
+        .h{
+            height: 150px;
         }
     }
 </style>
