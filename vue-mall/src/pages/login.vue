@@ -57,7 +57,7 @@
                     this.$cookie.set('userId',res.id,{expires:'Session'});
                     // 保存用户名
                     // this.$store.dispatch('saveUserName',res.username);
-                    // this.saveUserName(res.username);
+                    this.saveUserName(res.username);
                     // 跳转到首页
                     this.$router.push({
                         name:'index',
@@ -67,6 +67,7 @@
                     });
                 })
             },
+            // 在组件中分发 Action
             ...mapActions(['saveUserName']),
             register(){
                 this.axios.post('/user/register',{

@@ -50,13 +50,14 @@ export default {
   },
   methods:{
     getUser(){
-      this.axios.get('/user').then(()=>{
-        // TODO 保存到vuex
+      this.axios.get('/user').then((res)=>{
+        // 保存用户名
+        this.$store.dispatch('saveUserName',res.username);
       })
     },
     getCartCount(){
-      this.axios.get('/carts/products/sum').then(()=>{
-        // TODO 获取购物车数据
+      this.axios.get('/carts/products/sum').then((res)=>{
+        this.$store.dispatch('saveCartCount',res);
       })
     }
   }
