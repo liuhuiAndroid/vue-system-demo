@@ -141,6 +141,7 @@ cnpm i axios --save-dev
 
 1. Swiper5使用： https://www.swiper.com.cn/ 
 2. vue-lazyload插件
+3. CSS3动画库：https://daneden.github.io/animate.css/ 
 
 #### 遇到的问题
 
