@@ -38,7 +38,12 @@ axios.interceptors.response.use(function (response) {
         // 抛出异常
         return Promise.reject(res);
     }
+},(error)=>{
+    let res = error.response;
+    Message.error(res.data.message);
+    return Promise.reject(error);
 });
+
 Vue.use(VueAxios, axios);
 Vue.use(VueCookie);
 Vue.use(VueLazyLoad,{

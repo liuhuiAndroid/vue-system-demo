@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-<!--        <scan-pay-code v-if="showPay" @close="closePayModal" :img="payImg"></scan-pay-code>-->
+        <scan-pay-code v-if="showPay" @close="closePayModal" :img="payImg"></scan-pay-code>
         <modal
                 title="支付确认"
                 btnType="3"
@@ -67,8 +67,8 @@
     </div>
 </template>
 <script>
-    // import QRCode from 'qrcode'
-    // import ScanPayCode from './../components/ScanPayCode'
+    import QRCode from 'qrcode'
+    import ScanPayCode from './../components/ScanPayCode'
     import Modal from './../components/Modal'
     export default{
         name:'orderPay',
@@ -87,7 +87,7 @@
             }
         },
         components:{
-            // ScanPayCode,
+            ScanPayCode,
             Modal
         },
         mounted(){
@@ -112,16 +112,16 @@
                         orderName:'Vue高仿小米商城',
                         amount:0.01,//单位元
                         payType:2 //1支付宝，2微信
-                    }).then(()=>{
-                        // QRCode.toDataURL(res.content)
-                        //     .then(url => {
-                        //         this.showPay = true;
-                        //         this.payImg = url;
-                        //         this.loopOrderState();
-                        //     })
-                        //     .catch(() => {
-                        //         this.$message.error('微信二维码生成失败，请稍后重试');
-                        //     })
+                    }).then((res)=>{
+                        QRCode.toDataURL(res.content)
+                            .then(url => {
+                                this.showPay = true;
+                                this.payImg = url;
+                                this.loopOrderState();
+                            })
+                            .catch(() => {
+                                this.$message.error('微信二维码生成失败，请稍后重试');
+                            })
                     })
                 }
             },
