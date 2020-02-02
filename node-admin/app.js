@@ -1,6 +1,7 @@
 /**
  * @作者 lh
  * @创建时间 2020/1/12 23:36
+ * 全局入口文件
  */
 const express = require('express')
 const router = require('./router')

@@ -102,9 +102,9 @@ module.exports = {
 
     config
       .when(process.env.NODE_ENV === 'development',
-        // 源码调试 cheap-source-map 换成 source-map
-        // eval 最快
-        config => config.devtool('eval')
+        // 源码调试 cheap-source-map 换成 source-map, 适合调试
+        // 实际过程中 eval 最快
+        config => config.devtool('source-map')
       )
 
     config
