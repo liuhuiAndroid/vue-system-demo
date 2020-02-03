@@ -103,6 +103,7 @@
             }
         },
         mounted() {
+            // 页面启动后自动聚焦
             if (this.loginForm.username === '') {
                 this.$refs.username.focus()
             } else if (this.loginForm.password === '') {
@@ -116,6 +117,7 @@
                 } else {
                     this.passwordType = 'password'
                 }
+                // 显示密码后自动聚焦
                 this.$nextTick(() => {
                     this.$refs.password.focus()
                 })
