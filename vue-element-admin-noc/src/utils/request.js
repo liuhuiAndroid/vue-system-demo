@@ -17,7 +17,8 @@ service.interceptors.request.use(
     // Do something before request is sent
     if (store.getters.token) {
       // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-      config.headers['X-Token'] = getToken()
+      // config.headers['X-Token'] = getToken()
+      config.headers['Authorization'] = `Bearer ${getToken()}`
     }
     return config
   },
@@ -42,9 +43,9 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    if (res.code !== 20000) {
+    if (res.code !== 0) {
       Message({
-        message: res.message,
+        message: res.msg || '请求失败',
         type: 'error',
         duration: 5 * 1000
       })
@@ -62,15 +63,16 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject('error')
+      return Promise.reject('请求失败')
     } else {
       return res
     }
   },
   error => {
     console.log('err' + error) // for debug
+    const { msg } = error.response.data
     Message({
-      message: error.message,
+      message: msg || '请求失败',
       type: 'error',
       duration: 5 * 1000
     })
