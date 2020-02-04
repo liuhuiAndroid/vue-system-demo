@@ -5,13 +5,13 @@
 const express = require('express')
 const Result = require('../models/Result')
 const {querySql} = require('../db')
-const {login} = require('../services/user')
-const {md5} = require('../utils')
+const {login, findUser} = require('../services/user')
+const {md5, decode} = require('../utils')
 const {PWD_SALT} = require('../utils/constant')
 const {body, validationResult} = require('express-validator')
 const boom = require('boom')
 const jwt = require('jsonwebtoken')
-const { PRIVATE_KEY, JWT_EXPIRED } = require('../utils/constant')
+const {PRIVATE_KEY, JWT_EXPIRED} = require('../utils/constant')
 
 const router = express.Router()
 
@@ -31,22 +31,22 @@ router.post('/login',
 
         const err = validationResult(req)
         if (!err.isEmpty()) {
-            const [{ msg }] = err.errors
+            const [{msg}] = err.errors
             next(boom.badRequest(msg))
         } else {
             const username = req.body.username
             const password = md5(`${req.body.password}${PWD_SALT}`)
 
-            login({ username, password }, true).then(user => {
+            login({username, password}, true).then(user => {
                 if (!user || user.length === 0) {
                     new Result('登录失败').fail(res)
                 } else {
                     const token = jwt.sign(
-                        { username },
+                        {username},
                         PRIVATE_KEY,
-                        { expiresIn: JWT_EXPIRED }
+                        {expiresIn: JWT_EXPIRED}
                     )
-                    new Result({ token }, '登录成功').success(res)
+                    new Result({token}, '登录成功').success(res)
                 }
             })
         }
@@ -54,7 +54,36 @@ router.post('/login',
 
 // https://www.seckill24.top:18082/user/info
 router.get('/info', function (req, res, next) {
-    res.json('user info...')
+    // const decoded = decode(req)
+    // if (decoded && decoded.username) {
+    //     const user = findUser({ username: decoded.username }, next)
+    //     if (user) {
+    //         delete user.password
+    //         user.roles = [user.role]
+    //         new Result(user, '获取用户信息成功').success(res)
+    //     } else {
+    //         new Result(null, '获取用户信息失败').fail(res)
+    //     }
+    // } else {
+    //     new Result(null, '用户信息解析失败').fail(res)
+    // }
+
+    const decoded = decode(req)
+    if (decoded && decoded.username) {
+        findUser({username: decoded.username}, true)
+            .then(user => {
+                if (user) {
+                    user.roles = [user.role]
+                    new Result(user, '获取用户信息成功').success(res)
+                } else {
+                    new Result(null, '获取用户信息失败').fail(res)
+                }
+            })
+    } else {
+        new Result(null, '获取用户信息失败').fail(res)
+    }
+
+
 })
 
 module.exports = router
