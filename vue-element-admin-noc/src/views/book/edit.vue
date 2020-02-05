@@ -1,11 +1,15 @@
 <template>
-  <detail :is-edit="false"/>
+  <detail :is-edit="true"/>
 </template>
 
 <script>
 import Detail from "./components/Detail";
 export default {
-    name: 'create',
+    name: "edit",
     components: {Detail}
 }
 </script>
+
+<style scoped>
+
+</style>
