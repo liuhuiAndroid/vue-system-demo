@@ -4,7 +4,7 @@
  */
 // 是否是调试模式
 const debug = true
-const env = 'prod'
+const env = 'dev'
 
 module.exports = {
     debug,
