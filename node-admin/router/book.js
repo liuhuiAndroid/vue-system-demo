@@ -7,6 +7,7 @@ const multer = require('multer')
 const Result = require('../models/Result')
 const Book = require('../models/Book')
 const { UPLOAD_PATH } = require('../utils/constant')
+const bookService = require('../services/book')
 
 const router = express.Router()
 
@@ -30,5 +31,13 @@ router.post(
             //     })
         }
     })
+
+router.get('/category', function(req, res, next) {
+    bookService.getCategory().then(category => {
+        new Result(category).success(res)
+    }).catch(err => {
+        next(boom.badImplementation(err))
+    })
+})
 
 module.exports = router
