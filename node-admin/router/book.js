@@ -4,6 +4,7 @@
  */
 const express = require('express')
 const multer = require('multer')
+const boom = require('boom')
 const Result = require('../models/Result')
 const Book = require('../models/Book')
 const { UPLOAD_PATH } = require('../utils/constant')
@@ -31,6 +32,25 @@ router.post(
             //     })
         }
     })
+
+router.get('/list', function(req, res, next) {
+    bookService.listBook(req.query)
+        .then(({ list, count, page, pageSize }) => {
+            new Result(
+                list,
+                '获取图书列表成功',
+                {
+                    page: Number(page),
+                    pageSize: Number(pageSize),
+                    total: count || 0
+                }
+            ).success(res)
+        })
+        .catch(err => {
+            console.log('/book/list', err)
+            next(boom.badImplementation(err))
+        })
+})
 
 router.get('/category', function(req, res, next) {
     bookService.getCategory().then(category => {

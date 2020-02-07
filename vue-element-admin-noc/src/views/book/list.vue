@@ -177,6 +177,9 @@
             handleCreate() {
                 this.$router.push('/book/create')
             },
+            handleUpdate(row) {
+                this.$router.push(`/book/edit/${row.fileName}`)
+            },
             getCategoryList() {
                 getCategory().then(response => {
                     console.log('categoryList:' + response)
